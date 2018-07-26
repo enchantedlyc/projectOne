@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	
+	<context:component-scan base-package="com.lanou" use-default-filters="false" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    	<!-- prefix的value + return的字符串 + suffix的value -->
+	    	<!-- /resource/views/index.jsp -->
+	    <property name = "prefix" value="/resource/views/"></property><!--视图的路径 -->
+	    <property name = "suffix" value = ".jsp"></property><!-- 视图的格式 -->
+    </bean>
+    <!-- 静态资源的处理 js css img -->
+    <mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
+	<!-- 启动注解 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 文件上传配置 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    		<property name="maxUploadSize" value="5242880"></property>
+    		<property name="defaultEncoding" value="UTF-8"></property>
+    		<property name="resolveLazily" value="true" ></property>
+    	</bean>
+	
+		
+	
+</beans>
