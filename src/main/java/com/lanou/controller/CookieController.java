@@ -24,4 +24,8 @@ public class CookieController {
         }
 
     }
+
+    public String find(HttpServletRequest request){
+        System.out.println("哈哈");
+    }
 }
